@@ -1,0 +1,22 @@
+/** Used by NavButton class **/
+
+QPushButton {
+  color: #ffffff;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 0px;
+  outline: none;
+
+  background-color: transparent;
+}
+
+QPushButton::hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+QPushButton::pressed {
+  /*color: #2ca7f8;*/
+  background-color: rgba(255, 255, 255, 0.6);
+}

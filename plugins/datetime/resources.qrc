@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>resources/icons/tips-am.svg</file>
+        <file>resources/icons/tips-pm.svg</file>
+    </qresource>
+</RCC>
