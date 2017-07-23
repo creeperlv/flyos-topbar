@@ -9,7 +9,7 @@ xcb部分代码参考dde-dock
 
 ## dde-dock已移植的插件
 
-系统托盘(退出topbar会留一堆图标在桌面)
+系统托盘(退出topbar会留一堆图标在桌面,解决方法，重启dde-dock)
 wifi
 音量
 电源
