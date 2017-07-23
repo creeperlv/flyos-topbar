@@ -5,7 +5,16 @@ flyos标题栏
 
 目前所有插件都是移植dde-dock上的插件，有空再重写整个插件机制和所有插件
 
-借鉴了deepin-topbar上部分xcb调用代码
+xcb部分代码参考dde-dock
+
+## dde-dock已移植的插件
+
+系统托盘(退出topbar会留一堆图标在桌面)
+wifi
+音量
+电源
+时间
+分区挂载(disk-mount)(图标待更换)
 
 ## Build Dependencies (编译依赖)
 

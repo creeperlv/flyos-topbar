@@ -72,11 +72,27 @@ mainFrame::mainFrame(QWidget *parent) :
 
 void mainFrame::registerDockType()
 {
+    QRect screen = QApplication::desktop()->screenGeometry(QApplication::desktop()->primaryScreen());
+    resize(screen.width(), 30);
+    move(screen.x(), 0);
+
     xcb_ewmh_connection_t m_ewmh_connection;
-    xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(QX11Info::connection(), &m_ewmh_connection);
+    xcb_intern_atom_cookie_t * cookie = xcb_ewmh_init_atoms(QX11Info::connection(), &m_ewmh_connection);
     xcb_ewmh_init_atoms_replies(&m_ewmh_connection, cookie, NULL);
 
     xcb_atom_t atoms[1];
     atoms[0] = m_ewmh_connection._NET_WM_WINDOW_TYPE_DOCK;
     xcb_ewmh_set_wm_window_type(&m_ewmh_connection, winId(), 1, atoms);
+
+    xcb_ewmh_wm_strut_partial_t partial;
+    memset(&partial, 0, sizeof(xcb_ewmh_wm_strut_partial_t));
+
+    const QPoint p(screen.x(), 0);
+    const QRect r = QRect(p, size());
+
+    partial.top = r.bottom() + 2;
+    partial.top_start_x = r.left();
+    partial.top_end_x = r.right();
+
+    xcb_ewmh_set_wm_strut_partial(&m_ewmh_connection, winId(), partial);
 }

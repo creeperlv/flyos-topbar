@@ -35,8 +35,6 @@ set(SOURCE_FILES
         frame/main.cpp
         frame/mainframe.cpp
         frame/mainframe.h
-        frame/Frame.cpp
-        frame/Frame.h
 
         frame/controller/itemcontroller.cpp
         frame/controller/itemcontroller.h

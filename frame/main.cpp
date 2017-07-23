@@ -1,7 +1,6 @@
 #include <DApplication>
 #include <zconf.h>
 #include "mainframe.h"
-#include "Frame.h"
 
 DWIDGET_USE_NAMESPACE
 
@@ -17,11 +16,6 @@ int main(int argc,char **argv) {
         app.setOrganizationDomain("fly-os.xyz");
         app.setApplicationDescription(DApplication::translate("MainWindow", "FlyOS标题栏") + "\n");
     }
-
-    Frame *frame = new Frame;
-    frame->registerDesktop();
-    frame->show();
-    frame->lower();
 
     mainFrame *mainFrame1 = new mainFrame;
     mainFrame1->registerDockType();
