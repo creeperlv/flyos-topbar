@@ -3,6 +3,8 @@ flyos标题栏
 
 目前所有插件都是移植dde-dock上的插件，有空再重写整个插件机制和所有插件
 
+借鉴了deepin-topbar上部分xcb调用代码
+
 ## Build Dependencies
 
 * cmake
