@@ -51,6 +51,10 @@ set(SOURCE_FILES
         frame/dbus/dbusxmousearea.h
         frame/dbus/dbusdisplay.cpp
         frame/dbus/dbusdisplay.h
+        frame/dbus/dbusdock.h
+        frame/dbus/dbusdock.cpp
+        frame/dbus/dbusdockentry.cpp
+        frame/dbus/dbusdockentry.h
 
         frame/item/item.cpp
         frame/item/item.h

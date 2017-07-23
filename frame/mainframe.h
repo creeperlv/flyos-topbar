@@ -6,6 +6,9 @@
 #define FLYOS_TOPBAR_MAINFRAME_H
 
 #include <DBlurEffectWidget>
+#include <frame/dbus/dbusdock.h>
+#include <frame/dbus/dbusdockentry.h>
+#include <QtWidgets/QLabel>
 
 DWIDGET_USE_NAMESPACE
 
@@ -18,7 +21,17 @@ public:
 
     void registerDockType();
 
+private:
+    DBusDock *dBusDock;
+    QLabel *title;
 
+    QList<DBusDockEntry *> entryList;
+
+private slots:
+    void EntryAdded(const QDBusObjectPath &entryPath, const int index);
+    void EntryRemoved(const QString &entryId);
+
+    void ActiveChanged();
 };
 
 

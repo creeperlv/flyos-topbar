@@ -6,7 +6,6 @@
 #include <QtX11Extras/QX11Info>
 #include <DApplication>
 #include <QDesktopWidget>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QHBoxLayout>
 #include <frame/controller/itemcontroller.h>
 #include <widget/ImageButton.h>
@@ -24,12 +23,15 @@ mainFrame::mainFrame(QWidget *parent) :
     setMaskColor(DBlurEffectWidget::LightColor);
 
     ImageButton *logoButton = new ImageButton(this);
-    logoButton->setIcon(QPixmap(":/resources/logo.png").scaled(QSize(26,26), Qt::KeepAspectRatioByExpanding));
+    logoButton->setIcon(QPixmap(":/resources/logo.png").scaled(QSize(26, 26), Qt::KeepAspectRatioByExpanding));
     logoButton->move(40, 0);
 
-    QLabel *title = new QLabel("flyos-topbar",this);
-
-    title->move(100, 7);
+    title = new QLabel("flyos-topbar", this);
+    title->setStyleSheet("color:#2C3035;"
+                                 "text-align:center;"
+                                 "font-size:16px;"
+                                 "font-weight:bold;");
+    title->move(100, 2);
 
     ImageButton *settingButton = new ImageButton(":/resources/setting.png", this);
 
@@ -38,15 +40,28 @@ mainFrame::mainFrame(QWidget *parent) :
 
 
     QHBoxLayout *pluginsLayout = new QHBoxLayout(pluginsFrame);
-    pluginsLayout->setContentsMargins(0,0,0,0);
+    pluginsLayout->setContentsMargins(0, 0, 0, 0);
     pluginsFrame->setLayout(pluginsLayout);
 
     pluginsLayout->addStretch();
     pluginsLayout->addSpacing(10);
     pluginsLayout->addWidget(settingButton, 0, Qt::AlignVCenter);
 
-    ItemController *controller= ItemController::instance(this);
 
+    dBusDock = new DBusDock(this);
+
+    connect(dBusDock, &DBusDock::EntryAdded, this, &mainFrame::EntryAdded);
+    connect(dBusDock, &DBusDock::EntryRemoved, this, &mainFrame::EntryRemoved);
+
+    for (QDBusObjectPath entryPath : dBusDock->entries()) {
+        DBusDockEntry *entry = new DBusDockEntry(entryPath.path());
+        entryList << entry;
+        connect(entry, &DBusDockEntry::ActiveChanged, this, &mainFrame::ActiveChanged, Qt::UniqueConnection);
+
+    }
+
+//  加载插件
+    ItemController *controller = ItemController::instance(this);
 
 
     connect(logoButton, &QPushButton::clicked, this, [] {
@@ -57,31 +72,69 @@ mainFrame::mainFrame(QWidget *parent) :
         QProcess::startDetached("dde-control-center", QStringList() << "show");
     });
 
-    connect(controller, &ItemController::itemInserted, this, [=](const int index, Item *item){
+    connect(controller, &ItemController::itemInserted, this, [=](const int index, Item *item) {
         item->setVisible(true);
         item->setParent(this);
         item->setDockDisplayMode(Dock::DisplayMode::Efficient);
 
-        pluginsLayout->insertWidget(index+1, item);
+        pluginsLayout->insertWidget(index + 1, item);
     }, Qt::DirectConnection);
-    connect(controller, &ItemController::itemRemoved, this, [=](Item *item){
+    connect(controller, &ItemController::itemRemoved, this, [=](Item *item) {
         pluginsLayout->removeWidget(item);
     }, Qt::DirectConnection);
 
 }
 
-void mainFrame::registerDockType()
-{
+
+void mainFrame::EntryAdded(const QDBusObjectPath &entryPath, const int index) {
+    DBusDockEntry *entry = new DBusDockEntry(entryPath.path());
+    entryList << entry;
+    connect(entry, &DBusDockEntry::ActiveChanged, this, &mainFrame::ActiveChanged, Qt::UniqueConnection);
+
+    ActiveChanged();
+}
+
+void mainFrame::EntryRemoved(const QString &entryId) {
+    for (int i = 0; i < entryList.count(); i++) {
+        if (entryList[i]->id() == entryId) {
+            DBusDockEntry *entry = entryList[i];
+            entryList.removeAt(i);
+            entry->disconnect();
+            entry->deleteLater();
+            break;
+        }
+    }
+    ActiveChanged();
+
+}
+
+void mainFrame::ActiveChanged() {
+    QString name = " FlyOS";
+    for (DBusDockEntry *entry : entryList) {
+        if (entry->active()) {
+            name = entry->name();
+            title->setText(name);
+            title->setFixedWidth(title->fontMetrics().width(name));
+            return;
+        }
+    }
+
+    title->setText(name);
+    title->setFixedWidth(title->fontMetrics().width(name));
+}
+
+void mainFrame::registerDockType() {
     QRect screen = QApplication::desktop()->screenGeometry(QApplication::desktop()->primaryScreen());
     resize(screen.width(), 30);
     move(screen.x(), 0);
 
     xcb_ewmh_connection_t m_ewmh_connection;
-    xcb_intern_atom_cookie_t * cookie = xcb_ewmh_init_atoms(QX11Info::connection(), &m_ewmh_connection);
+    xcb_intern_atom_cookie_t *cookie = xcb_ewmh_init_atoms(QX11Info::connection(), &m_ewmh_connection);
     xcb_ewmh_init_atoms_replies(&m_ewmh_connection, cookie, NULL);
 
-    xcb_atom_t atoms[1];
+    xcb_atom_t atoms[2];
     atoms[0] = m_ewmh_connection._NET_WM_WINDOW_TYPE_DOCK;
+    atoms[1] = m_ewmh_connection._NET_WM_WINDOW_TYPE_DESKTOP;
     xcb_ewmh_set_wm_window_type(&m_ewmh_connection, winId(), 1, atoms);
 
     xcb_ewmh_wm_strut_partial_t partial;
@@ -96,3 +149,5 @@ void mainFrame::registerDockType()
 
     xcb_ewmh_set_wm_strut_partial(&m_ewmh_connection, winId(), partial);
 }
+
+
