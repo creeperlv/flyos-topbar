@@ -48,5 +48,3 @@ set(SOURCE_FILES
 
 add_library(sound SHARED ${SOURCE_FILES})
 target_link_libraries(sound Qt5::Widgets Qt5::Gui Qt5::Core dtkwidget Qt5::DBus Qt5::Svg gsettings-qt)
-
-install(TARGETS sound LIBRARY DESTINATION usr/lib/flyos-topbar/plugins)

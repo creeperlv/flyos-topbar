@@ -35,5 +35,3 @@ set(SOURCE_FILES
 
 add_library(system-tray SHARED ${SOURCE_FILES})
 target_link_libraries(system-tray Qt5::Widgets Qt5::Gui Qt5::Core dtkwidget Qt5::DBus Qt5::Svg Qt5::X11Extras xcb xcb-image xcb-icccm xcb-composite Xtst)
-
-install(TARGETS system-tray LIBRARY DESTINATION usr/lib/flyos-topbar/plugins)

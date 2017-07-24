@@ -13,3 +13,11 @@ add_subdirectory(system-tray)
 add_subdirectory(sound)
 add_subdirectory(network)
 add_subdirectory(disk-mount)
+
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libdatetime.so
+        ${CMAKE_CURRENT_BINARY_DIR}/libdisk-mount.so
+        ${CMAKE_CURRENT_BINARY_DIR}/libsystem-tray.so
+        ${CMAKE_CURRENT_BINARY_DIR}/libnetwork.so
+        ${CMAKE_CURRENT_BINARY_DIR}/libsound.so
+        ${CMAKE_CURRENT_BINARY_DIR}/libshutdown.so
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/flyos-topbar/plugins)

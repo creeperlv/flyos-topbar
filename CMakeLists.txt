@@ -84,4 +84,8 @@ target_link_libraries(flyos-topbar Qt5::Widgets Qt5::Gui Qt5::Core Qt5::DBus Qt5
 
 add_dependencies(flyos-topbar installer-qm-update)
 
-install(TARGETS flyos-topbar RUNTIME DESTINATION usr/bin)
+install(TARGETS flyos-topbar RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+install(FILES flyos-topbar.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications)
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/translations/
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/share/translations
+        FILES_MATCHING PATTERN "*")

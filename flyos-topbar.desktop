@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=/usr/bin/flyos-topbar %u
+Icon=clipgrab
+StartupNotify=true
+Terminal=false
+Categories=Utility;
+OnlyShowIn=Deepin;
+MimeType=inode/directory;
+
+Name=topbar
+Name[zh_CN]=标题栏

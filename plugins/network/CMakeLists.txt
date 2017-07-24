@@ -55,5 +55,3 @@ set(SOURCE_FILES
 
 add_library(network SHARED ${SOURCE_FILES})
 target_link_libraries(network Qt5::Widgets Qt5::Gui Qt5::Core dtkwidget Qt5::DBus Qt5::Svg)
-
-install(TARGETS network LIBRARY DESTINATION usr/lib/flyos-topbar/plugins)
