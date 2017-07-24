@@ -87,5 +87,5 @@ add_dependencies(flyos-topbar installer-qm-update)
 install(TARGETS flyos-topbar RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
 install(FILES flyos-topbar.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/share/applications)
 install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/translations/
-        DESTINATION ${CMAKE_INSTALL_PREFIX}/share/translations
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/share/flyos-topbar/translations
         FILES_MATCHING PATTERN "*")
