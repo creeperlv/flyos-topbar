@@ -39,13 +39,23 @@ wifi
 
 * mkdir build
 * cd build
-* cmake ..
+* cmake -DCMAKE_INSTALL_PREFIX=/usr ..
 * make
 * sudo make install
 
+## 下载
+
+* alpm包(适用于arch/manjaro等arch衍生发行版)
+
+[flyos-topbar](https://coding.net/u/xiayesuifeng/p/flyos-mirrors/git/raw/master/x86_64/flyos-topbar-0.1.0-1-x86_64.pkg.tar.xz)
+
+* deb包(感谢[@jingle0927](https://github.com/jingle0927)提供的deb包,虽然是旧版)
+
+旧版[topbar.zip](https://github.com/linuxflyos/flyos-topbar/files/1168638/topbar.zip)
+
 ## Usage (使用)
 
-* flyos-topbar
+* flyos-topbar 或者 点击启动器上的标题栏图标
 
 ## License
 
