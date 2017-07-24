@@ -44,4 +44,4 @@ set(SOURCE_FILES
 add_library(disk-mount SHARED ${SOURCE_FILES})
 target_link_libraries(disk-mount Qt5::Widgets Qt5::Gui Qt5::Core dtkwidget Qt5::DBus Qt5::Svg)
 
-install(TARGETS disk-mount LIBRARY DESTINATION lib/flyos-topbar/plugins)
+install(TARGETS disk-mount LIBRARY DESTINATION usr/lib/flyos-topbar/plugins)

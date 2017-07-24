@@ -14,6 +14,7 @@ find_package(Qt5Gui)
 find_package(Qt5Widgets)
 find_package(Qt5DBus)
 find_package(Qt5X11Extras)
+find_package(Qt5LinguistTools)
 
 include_directories("/usr/include/libdtk-1.0/DBase")
 include_directories("/usr/include/libdtk-1.0/DUtil")
@@ -70,7 +71,17 @@ set(SOURCE_FILES
         interfaces/pluginproxyinterface.h
         interfaces/pluginsiteminterface.h widget/ImageButton.cpp widget/ImageButton.h)
 
+
+file(GLOB INSTALLER_TRANSLATION_TS
+        ${CMAKE_CURRENT_SOURCE_DIR}/translations/flyos-topbar*.ts)
+set_source_files_properties(${INSTALLER_TRANSLATION_TS}
+        PROPERTIES OUTPUT_LOCATION ${CMAKE_CURRENT_BINARY_DIR}/translations)
+qt5_add_translation(INSTALLER_TRANSLATION_QM ${INSTALLER_TRANSLATION_TS})
+add_custom_target(installer-qm-update DEPENDS ${INSTALLER_TRANSLATION_QM})
+
 add_executable(flyos-topbar ${SOURCE_FILES} ${QRC_FILES})
 target_link_libraries(flyos-topbar Qt5::Widgets Qt5::Gui Qt5::Core Qt5::DBus Qt5::X11Extras xcb-ewmh xcb dtkbase dtkwidget)
+
+add_dependencies(flyos-topbar installer-qm-update)
 
 install(TARGETS flyos-topbar RUNTIME DESTINATION usr/bin)

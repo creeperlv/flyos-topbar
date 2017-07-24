@@ -38,4 +38,4 @@ set(SOURCE_FILES
 add_library(shutdown SHARED ${SOURCE_FILES})
 target_link_libraries(shutdown Qt5::Widgets Qt5::Gui Qt5::Core dtkwidget Qt5::DBus Qt5::Svg)
 
-install(TARGETS shutdown LIBRARY DESTINATION lib/flyos-topbar/plugins)
+install(TARGETS shutdown LIBRARY DESTINATION usr/lib/flyos-topbar/plugins)

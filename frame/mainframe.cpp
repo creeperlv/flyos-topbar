@@ -24,14 +24,14 @@ mainFrame::mainFrame(QWidget *parent) :
 
     ImageButton *logoButton = new ImageButton(this);
     logoButton->setIcon(QPixmap(":/resources/logo.png").scaled(QSize(26, 26), Qt::KeepAspectRatioByExpanding));
-    logoButton->move(40, 0);
+    logoButton->move(30, 0);
 
     title = new QLabel("flyos-topbar", this);
     title->setStyleSheet("color:#2C3035;"
                                  "text-align:center;"
                                  "font-size:16px;"
                                  "font-weight:bold;");
-    title->move(100, 2);
+    title->setGeometry(100, 0, 100, 30);
 
     ImageButton *settingButton = new ImageButton(":/resources/setting.png", this);
 
