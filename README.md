@@ -7,19 +7,18 @@ flyos标题栏
 
 xcb部分代码参考dde-dock
 
-## dde-dock已移植的插件
+## 已有插件
 
+* 系统信息插件(内存网速显示，未完成)
+
+### 以下插件为移植dock的插件
 系统托盘(退出topbar会留一堆图标在桌面,解决方法，重启dde-dock)
 
-wifi
-
-音量
-
-电源
-
-时间
-
-分区挂载(disk-mount)(图标待更换)
+* wifi
+* 音量
+* 电源
+* 时间
+* 分区挂载(disk-mount)(图标待更换)
 
 ## Build Dependencies (编译依赖)
 
