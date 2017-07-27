@@ -19,7 +19,7 @@ include_directories("/usr/include/libdtk-1.0/DWidget")
 
 set(SOURCE_FILES
         systeminfoplugin.cpp
-        shutdownplugin.h
+        systeminfoplugin.h
         systeminfowidget.cpp
         systeminfowidget.h)
 

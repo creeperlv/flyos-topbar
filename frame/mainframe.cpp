@@ -23,8 +23,20 @@ mainFrame::mainFrame(QWidget *parent) :
     setMaskColor(DBlurEffectWidget::LightColor);
 
     ImageButton *logoButton = new ImageButton(this);
-    logoButton->setIcon(QPixmap(":/resources/logo.png").scaled(QSize(26, 26), Qt::KeepAspectRatioByExpanding));
     logoButton->move(30, 0);
+
+    QString distroid;
+    QFile file("/etc/os-release");
+    if(file.open(QIODevice::ReadOnly)){
+        distroid = file.readLine();
+    }
+    if (distroid.contains("Deepin")) {
+        logoButton->setIcon(QIcon::fromTheme("dde").pixmap(26,26));
+    }
+    else {
+        logoButton->setIcon(QPixmap(":/resources/logo.png").scaled(QSize(26, 26), Qt::KeepAspectRatioByExpanding));
+    }
+
 
     title = new QLabel("flyos-topbar", this);
     title->setStyleSheet("color:#2C3035;"

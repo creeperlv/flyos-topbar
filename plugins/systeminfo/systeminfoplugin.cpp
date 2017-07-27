@@ -1,4 +1,4 @@
-#include "shutdownplugin.h"
+#include "systeminfoplugin.h"
 
 systeminfoPlugin::systeminfoPlugin(QObject *parent)
     : QObject(parent)
