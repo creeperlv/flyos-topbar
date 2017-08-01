@@ -32,6 +32,8 @@ private slots:
     void EntryRemoved(const QString &entryId);
 
     void ActiveChanged();
+
+
 };
 
 

@@ -12,7 +12,6 @@
 
 #include "mainframe.h"
 
-
 mainFrame::mainFrame(QWidget *parent) :
         DBlurEffectWidget(parent) {
     setFixedSize(qApp->desktop()->size().width(), 30);
@@ -21,6 +20,7 @@ mainFrame::mainFrame(QWidget *parent) :
 
     setBlendMode(DBlurEffectWidget::BehindWindowBlend);
     setMaskColor(DBlurEffectWidget::LightColor);
+
 
     ImageButton *logoButton = new ImageButton(this);
     logoButton->move(30, 0);
@@ -96,7 +96,6 @@ mainFrame::mainFrame(QWidget *parent) :
     }, Qt::DirectConnection);
 
 }
-
 
 void mainFrame::EntryAdded(const QDBusObjectPath &entryPath, const int index) {
     DBusDockEntry *entry = new DBusDockEntry(entryPath.path());

@@ -69,7 +69,7 @@ set(SOURCE_FILES
 
         interfaces/constants.h
         interfaces/pluginproxyinterface.h
-        interfaces/pluginsiteminterface.h widget/ImageButton.cpp widget/ImageButton.h)
+        interfaces/pluginsiteminterface.h widget/ImageButton.cpp widget/ImageButton.h frame/shadow.cpp frame/shadow.h)
 
 
 file(GLOB INSTALLER_TRANSLATION_TS

@@ -8,7 +8,7 @@ systeminfoPlugin::systeminfoPlugin(QObject *parent)
 
 const QString systeminfoPlugin::pluginName() const
 {
-    return "系统信息";
+    return "systeminfo";
 }
 
 QWidget *systeminfoPlugin::itemWidget(const QString &itemKey)
@@ -18,7 +18,7 @@ QWidget *systeminfoPlugin::itemWidget(const QString &itemKey)
 
 QWidget *systeminfoPlugin::itemTipsWidget(const QString &itemKey)
 {
-    QLabel *label =new QLabel("systeminfo");
+    QLabel *label =new QLabel("系统信息");
     label->setStyleSheet("color:white");
     return label;
 }
