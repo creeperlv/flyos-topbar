@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QSvgRenderer>
 #include <QMouseEvent>
+#include <QtWidgets/QLabel>
 
 DatetimeWidget::DatetimeWidget(QWidget *parent)
         : QWidget(parent),
@@ -18,8 +19,6 @@ DatetimeWidget::DatetimeWidget(QWidget *parent)
 
 void DatetimeWidget::toggleHourFormat() {
     m_24HourFormat = !m_24HourFormat;
-
-    this->setFixedWidth(m_24HourFormat ? 100 : 120);
 
     m_settings.setValue("24HourFormat", m_24HourFormat);
 
@@ -58,7 +57,7 @@ void DatetimeWidget::paintEvent(QPaintEvent *e) {
         format = "MM月dd日 hh:mm AP";
     }
 
-    this->setFixedWidth(m_24HourFormat ? 100 : 120);
+    this->setFixedWidth(QLabel().fontMetrics().width(format));
 
     painter.setPen(QColor(44, 48, 53));
     painter.drawText(rect(), Qt::AlignCenter, current.currentDateTime().toString(format));

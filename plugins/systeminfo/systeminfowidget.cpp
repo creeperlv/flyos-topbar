@@ -26,11 +26,13 @@ systeminfowidget::systeminfowidget(QWidget *parent) {
 
     upload = new QLabel(this);
     upload->move(65, 0);
-    upload->setStyleSheet("color:#2C3035");
+    upload->setStyleSheet("color:#2C3035;"
+                                  "font-size:12px");
 
     download = new QLabel(this);
     download->move(65, 15);
-    download->setStyleSheet("color:#2C3035");
+    download->setStyleSheet("color:#2C3035;"
+                                    "font-size:12px");
 
     startTimer(1000);
 }
