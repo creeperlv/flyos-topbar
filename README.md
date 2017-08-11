@@ -7,7 +7,7 @@ flyos标题栏
 
 xcb部分代码参考dde-dock
 
-[image](https://github.com/linuxflyos/flyos-topbar/raw/master/preview.png）
+![image](https://github.com/linuxflyos/flyos-topbar/raw/master/preview.png)
 
 ## 已有插件
 
