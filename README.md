@@ -48,7 +48,7 @@ xcb部分代码参考dde-dock
 
 * alpm包(适用于arch/manjaro等arch衍生发行版)
 
-[flyos-topbar-0.1.2](https://coding.net/u/xiayesuifeng/p/flyos-mirrors/git/raw/master/x86_64/flyos-topbar-0.1.2-1-x86_64.pkg.tar.xz)
+[flyos-topbar-0.1.4](https://git.oschina.net/flyos/flyos-mirrors/raw/master/x86_64/flyos-topbar-0.1.4-1-x86_64.pkg.tar.xz)
 
 * deb包(感谢[@jingle0927](https://github.com/jingle0927)提供的deb包,虽然是旧版)
 
