@@ -3,9 +3,11 @@ flyos标题栏
 
 编译运行需要dde桌面环境
 
-目前所有插件都是移植dde-dock上的插件，有空再重写整个插件机制和所有插件
+目前除系统信息外所有插件都是移植dde-dock上的插件，有空再重写整个插件机制和所有插件
 
 xcb部分代码参考dde-dock
+
+![image](https://github.com/linuxflyos/flyos-topbar/raw/master/preview.png)
 
 ## 已有插件
 
