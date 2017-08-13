@@ -10,11 +10,9 @@
 SystemTrayPlugin::SystemTrayPlugin(QObject *parent)
         : QObject(parent),
           m_trayInter(new DBusTrayManager(this)),
-          m_trayApplet(new TrayApplet),
           m_tipsLabel(new QLabel),
 
           m_containerSettings(new QSettings("deepin", "dde-dock-tray")) {
-    m_trayApplet->setObjectName("sys-tray");
 
     m_tipsLabel->setObjectName("sys-tray");
     m_tipsLabel->setText(tr("System Tray"));
@@ -56,13 +54,13 @@ QWidget *SystemTrayPlugin::itemTipsWidget(const QString &itemKey) {
 
 QWidget *SystemTrayPlugin::itemPopupApplet(const QString &itemKey) {
 
-    Q_ASSERT(m_trayList.size());
-
-    updateTipsContent();
-
-    if (m_trayList.size() > 1)
-        return m_trayApplet;
-    else
+//    Q_ASSERT(m_trayList.size());
+//
+//    updateTipsContent();
+//
+//    if (m_trayList.size() > 1)
+//        return m_trayApplet;
+//    else
         return nullptr;
 }
 
@@ -92,11 +90,11 @@ void SystemTrayPlugin::setItemIsInContainer(const QString &itemKey, const bool c
 }
 
 void SystemTrayPlugin::updateTipsContent() {
-    auto trayList = m_trayList.values();
+//    auto trayList = m_trayList.values();
 //    trayList.removeOne(m_fashionItem->activeTray());
 
-    m_trayApplet->clear();
-    m_trayApplet->addWidgets(trayList);
+//    m_trayApplet->clear();
+//    m_trayApplet->addWidgets(trayList);
 }
 
 const QString SystemTrayPlugin::getWindowClass(quint32 winId) {
@@ -152,8 +150,8 @@ void SystemTrayPlugin::trayRemoved(const quint32 winId) {
     m_trayList.remove(winId);
     widget->deleteLater();
 
-    if (m_trayApplet->isVisible())
-        updateTipsContent();
+//    if (m_trayApplet->isVisible())
+//        updateTipsContent();
 
 }
 
@@ -163,7 +161,7 @@ void SystemTrayPlugin::trayChanged(const quint32 winId) {
 
     m_trayList[winId]->updateIcon();
 
-    if (m_trayApplet->isVisible())
-        updateTipsContent();
+//    if (m_trayApplet->isVisible())
+//        updateTipsContent();
 }
 

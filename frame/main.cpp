@@ -13,18 +13,20 @@ int main(int argc, char **argv) {
         app.loadTranslator();
         app.setApplicationDisplayName("FlyOS标题栏");
         app.setApplicationName("flyos-topbar");
-        app.setApplicationVersion("0.1.3");
+        app.setApplicationVersion("0.1.4");
         app.setOrganizationDomain("fly-os.xyz");
         app.setApplicationDescription(DApplication::translate("MainWindow", "FlyOS标题栏") + "\n");
+
+        shadow *shadow1 = new shadow;
+        shadow1->show();
+
+        mainFrame *mainFrame1 = new mainFrame;
+        mainFrame1->registerDockType();
+        mainFrame1->activateWindow();
+        mainFrame1->show();
+
+        return app.exec();
     }
 
-    shadow *shadow1 = new shadow;
-    shadow1->show();
-
-    mainFrame *mainFrame1 = new mainFrame;
-    mainFrame1->registerDockType();
-    mainFrame1->activateWindow();
-    mainFrame1->show();
-
-    return app.exec();
+    return 0;
 }

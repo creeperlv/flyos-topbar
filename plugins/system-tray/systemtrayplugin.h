@@ -44,7 +44,6 @@ private:
     DBusTrayManager *m_trayInter;
     QMap<quint32, TrayWidget *> m_trayList;
 
-    TrayApplet *m_trayApplet;
     QLabel *m_tipsLabel;
 
     QSettings *m_containerSettings;
