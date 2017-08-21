@@ -13,7 +13,7 @@ void PluginLoader::run() {
 #ifdef QT_DEBUG
     const QDir pluginsDir(QApplication::applicationDirPath() + "/plugins");
 #else
-    const QDir pluginsDir("/usr/lib/flyos-topbar/plugins");
+    const QDir pluginsDir("../lib/flyos-topbar/plugins");
 #endif
     const QStringList plugins = pluginsDir.entryList(QDir::Files);
     for (const QString file : plugins) {

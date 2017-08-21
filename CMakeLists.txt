@@ -16,9 +16,8 @@ find_package(Qt5DBus)
 find_package(Qt5X11Extras)
 find_package(Qt5LinguistTools)
 
-include_directories("/usr/include/libdtk-1.0/DBase")
-include_directories("/usr/include/libdtk-1.0/DUtil")
-include_directories("/usr/include/libdtk-1.0/DWidget")
+include_directories("/usr/include/libdtk-2.0/DCore")
+include_directories("/usr/include/libdtk-2.0/DWidget")
 
 include_directories(interfaces)
 
@@ -80,7 +79,7 @@ qt5_add_translation(INSTALLER_TRANSLATION_QM ${INSTALLER_TRANSLATION_TS})
 add_custom_target(installer-qm-update DEPENDS ${INSTALLER_TRANSLATION_QM})
 
 add_executable(flyos-topbar ${SOURCE_FILES} ${QRC_FILES})
-target_link_libraries(flyos-topbar Qt5::Widgets Qt5::Gui Qt5::Core Qt5::DBus Qt5::X11Extras xcb-ewmh xcb dtkbase dtkwidget)
+target_link_libraries(flyos-topbar Qt5::Widgets Qt5::Gui Qt5::Core Qt5::DBus Qt5::X11Extras xcb-ewmh xcb dtkcore dtkwidget)
 
 add_dependencies(flyos-topbar installer-qm-update)
 
