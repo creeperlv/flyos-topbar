@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
         app.loadTranslator();
         app.setApplicationDisplayName("FlyOS标题栏");
         app.setApplicationName("flyos-topbar");
-        app.setApplicationVersion("0.1.5");
+        app.setApplicationVersion("0.1.6");
         app.setOrganizationDomain("fly-os.xyz");
         app.setApplicationDescription(DApplication::translate("MainWindow", "FlyOS标题栏") + "\n");
 
